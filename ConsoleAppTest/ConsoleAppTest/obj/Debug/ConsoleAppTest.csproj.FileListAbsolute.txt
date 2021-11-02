@@ -1,0 +1,10 @@
+C:\Users\YASH\source\repos\rpm\ConsoleAppTest\ConsoleAppTest\bin\Debug\ConsoleAppTest.exe.config
+C:\Users\YASH\source\repos\rpm\ConsoleAppTest\ConsoleAppTest\bin\Debug\ConsoleAppTest.exe
+C:\Users\YASH\source\repos\rpm\ConsoleAppTest\ConsoleAppTest\bin\Debug\ConsoleAppTest.pdb
+C:\Users\YASH\source\repos\rpm\ConsoleAppTest\ConsoleAppTest\bin\Debug\ClassLibraryForArray.dll
+C:\Users\YASH\source\repos\rpm\ConsoleAppTest\ConsoleAppTest\bin\Debug\ClassLibraryForArray.pdb
+C:\Users\YASH\source\repos\rpm\ConsoleAppTest\ConsoleAppTest\obj\Debug\ConsoleAppTest.csprojAssemblyReference.cache
+C:\Users\YASH\source\repos\rpm\ConsoleAppTest\ConsoleAppTest\obj\Debug\ConsoleAppTest.csproj.CoreCompileInputs.cache
+C:\Users\YASH\source\repos\rpm\ConsoleAppTest\ConsoleAppTest\obj\Debug\ConsoleAppTest.csproj.CopyComplete
+C:\Users\YASH\source\repos\rpm\ConsoleAppTest\ConsoleAppTest\obj\Debug\ConsoleAppTest.exe
+C:\Users\YASH\source\repos\rpm\ConsoleAppTest\ConsoleAppTest\obj\Debug\ConsoleAppTest.pdb
