@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace ClassLibraryForArray
 {
@@ -83,21 +84,26 @@ namespace ClassLibraryForArray
                 string row;
                 string[] buff;
                 int tempLength = 0;
+                int length = 0;
+                int j;
 
                 while ((row = file.ReadLine()) != null)
-                    tempLength += row.Split(' ').Length;
-
+                    length += Regex.Replace(row.Trim(' '), "\\s+", " ").Split(' ').Length;
 
                 file.BaseStream.Position = 0;
-                IntArray result = new IntArray(tempLength);
+                IntArray result = new IntArray(length);
 
                 while ((row = file.ReadLine()) != null)
                 {
+                    row = Regex.Replace(row.Trim(' '), "\\s+", " ");
                     buff = row.Split(' ');
+                    tempLength += buff.Length;
+                    j = 0;
 
-                    for (int i = 0; i < buff.Length; i++)
+                    for (int i = tempLength - buff.Length; i < tempLength; i++)
                     {
-                        result[i] = Convert.ToInt32(buff[i]);
+                        result[i] = Convert.ToInt32(buff[j]);
+                        j++;
                     }
                 }
 
