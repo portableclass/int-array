@@ -1,5 +1,4 @@
-﻿
-namespace WinFormsApp
+﻿namespace WinFormsApp
 {
     partial class Form1
     {
@@ -80,6 +79,21 @@ namespace WinFormsApp
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -91,21 +105,22 @@ namespace WinFormsApp
             // 
             this.textBox1.Location = new System.Drawing.Point(785, 82);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(125, 27);
+            this.textBox1.Size = new System.Drawing.Size(137, 27);
             this.textBox1.TabIndex = 0;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(785, 216);
+            this.textBox2.Location = new System.Drawing.Point(785, 252);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(125, 27);
+            this.textBox2.Size = new System.Drawing.Size(137, 27);
             this.textBox2.TabIndex = 1;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(785, 342);
+            this.textBox3.Location = new System.Drawing.Point(785, 378);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(125, 27);
+            this.textBox3.Size = new System.Drawing.Size(137, 27);
             this.textBox3.TabIndex = 2;
             // 
             // label1
@@ -120,7 +135,7 @@ namespace WinFormsApp
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(785, 193);
+            this.label2.Location = new System.Drawing.Point(785, 229);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(257, 20);
             this.label2.TabIndex = 6;
@@ -129,7 +144,7 @@ namespace WinFormsApp
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(785, 319);
+            this.label3.Location = new System.Drawing.Point(785, 355);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(282, 20);
             this.label3.TabIndex = 7;
@@ -170,13 +185,13 @@ namespace WinFormsApp
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(100, 26);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(224, 26);
             this.toolStripMenuItem4.Text = "1";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(100, 26);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(224, 26);
             this.toolStripMenuItem5.Text = "2";
             // 
             // случайноToolStripMenuItem
@@ -185,19 +200,19 @@ namespace WinFormsApp
             this.toolStripMenuItem6,
             this.toolStripMenuItem7});
             this.случайноToolStripMenuItem.Name = "случайноToolStripMenuItem";
-            this.случайноToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.случайноToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.случайноToolStripMenuItem.Text = "случайно";
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(100, 26);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(224, 26);
             this.toolStripMenuItem6.Text = "1";
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(100, 26);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(224, 26);
             this.toolStripMenuItem7.Text = "2";
             // 
             // изФайлаToolStripMenuItem
@@ -206,19 +221,19 @@ namespace WinFormsApp
             this.toolStripMenuItem8,
             this.toolStripMenuItem9});
             this.изФайлаToolStripMenuItem.Name = "изФайлаToolStripMenuItem";
-            this.изФайлаToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.изФайлаToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.изФайлаToolStripMenuItem.Text = "из файла";
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(100, 26);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(224, 26);
             this.toolStripMenuItem8.Text = "1";
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(100, 26);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(224, 26);
             this.toolStripMenuItem9.Text = "2";
             // 
             // действиеСМассивамиToolStripMenuItem
@@ -369,28 +384,35 @@ namespace WinFormsApp
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.dataGridView1.ColumnHeadersHeight = 29;
             this.dataGridView1.Location = new System.Drawing.Point(44, 82);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(563, 76);
+            this.dataGridView1.Size = new System.Drawing.Size(682, 95);
             this.dataGridView1.TabIndex = 10;
             // 
             // dataGridView2
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(44, 216);
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.dataGridView2.ColumnHeadersHeight = 29;
+            this.dataGridView2.Location = new System.Drawing.Point(44, 252);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 29;
-            this.dataGridView2.Size = new System.Drawing.Size(563, 64);
-            this.dataGridView2.TabIndex = 11;
+            this.dataGridView2.Size = new System.Drawing.Size(682, 88);
+            this.dataGridView2.TabIndex = 20;
             // 
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(44, 439);
+            this.dataGridView3.Location = new System.Drawing.Point(44, 475);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 29;
@@ -403,7 +425,7 @@ namespace WinFormsApp
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.textBox5);
             this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Location = new System.Drawing.Point(785, 439);
+            this.groupBox1.Location = new System.Drawing.Point(785, 475);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(250, 125);
             this.groupBox1.TabIndex = 13;
@@ -446,10 +468,11 @@ namespace WinFormsApp
             // 
             this.button1.Location = new System.Drawing.Point(785, 129);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
+            this.button1.Size = new System.Drawing.Size(160, 48);
             this.button1.TabIndex = 14;
-            this.button1.Text = "button1";
+            this.button1.Text = "Подтверждение";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label6
             // 
@@ -463,7 +486,7 @@ namespace WinFormsApp
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(44, 193);
+            this.label7.Location = new System.Drawing.Point(44, 229);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 20);
             this.label7.TabIndex = 16;
@@ -472,7 +495,7 @@ namespace WinFormsApp
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(44, 349);
+            this.label8.Location = new System.Drawing.Point(44, 385);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(51, 20);
             this.label8.TabIndex = 17;
@@ -481,7 +504,7 @@ namespace WinFormsApp
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(115, 349);
+            this.label9.Location = new System.Drawing.Point(115, 385);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(63, 20);
             this.label9.TabIndex = 18;
@@ -490,11 +513,101 @@ namespace WinFormsApp
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(44, 416);
+            this.label10.Location = new System.Drawing.Point(44, 452);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(73, 20);
             this.label10.TabIndex = 19;
             this.label10.Text = "Массив 3";
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn17
+            // 
+            this.dataGridViewTextBoxColumn17.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            this.dataGridViewTextBoxColumn17.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn18
+            // 
+            this.dataGridViewTextBoxColumn18.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            this.dataGridViewTextBoxColumn18.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn19
+            // 
+            this.dataGridViewTextBoxColumn19.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
+            this.dataGridViewTextBoxColumn19.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn20
+            // 
+            this.dataGridViewTextBoxColumn20.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
+            this.dataGridViewTextBoxColumn20.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn21
+            // 
+            this.dataGridViewTextBoxColumn21.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
+            this.dataGridViewTextBoxColumn21.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn22
+            // 
+            this.dataGridViewTextBoxColumn22.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
+            this.dataGridViewTextBoxColumn22.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn23
+            // 
+            this.dataGridViewTextBoxColumn23.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            this.dataGridViewTextBoxColumn23.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn24
+            // 
+            this.dataGridViewTextBoxColumn24.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            this.dataGridViewTextBoxColumn24.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn25
+            // 
+            this.dataGridViewTextBoxColumn25.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
+            this.dataGridViewTextBoxColumn25.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn26
+            // 
+            this.dataGridViewTextBoxColumn26.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
+            this.dataGridViewTextBoxColumn26.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn27
+            // 
+            this.dataGridViewTextBoxColumn27.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
+            this.dataGridViewTextBoxColumn27.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn28
+            // 
+            this.dataGridViewTextBoxColumn28.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
+            this.dataGridViewTextBoxColumn28.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn29
+            // 
+            this.dataGridViewTextBoxColumn29.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
+            this.dataGridViewTextBoxColumn29.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn30
+            // 
+            this.dataGridViewTextBoxColumn30.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
+            this.dataGridViewTextBoxColumn30.Width = 125;
             // 
             // Form1
             // 
@@ -587,6 +700,21 @@ namespace WinFormsApp
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem23;
 
         #endregion
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
     }
 }
 
