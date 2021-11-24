@@ -23,11 +23,14 @@ namespace ClassLibraryForArray
 
         // private one-dimensional array
         private int[] a;
-        // privatelength
+        // private length
         private int length;
 
-        // property: array length
-        public int Length { get; set; }
+        // public property: array length
+        public int Length
+        {
+            get { return length; }
+        }
         // indexer
         public int this[int i]
         {
@@ -62,8 +65,13 @@ namespace ClassLibraryForArray
             for (int i = 0; i < length; i++)
                 a[i] = arr[i];
         }
-
-        // creating an array of length "length" and filling it with random integers in the range from a to b
+        /// <summary>
+        /// creating an array of length "length" and filling it with random integers in the range from a to b
+        /// </summary>
+        /// <param name="length">array length</param>
+        /// <param name="a">beginning of the range</param>
+        /// <param name="b">end of range</param>
+        /// <returns></returns>
         public static IntArray RandomIntArray(int length, int a, int b)
         {
             IntArray result = new IntArray(length);
@@ -75,76 +83,64 @@ namespace ClassLibraryForArray
             _notify?.Invoke($"The RandomIntArray method has worked. Created an array of long {length} in the range [{a}; {b}]");
             return result;
         }
-        // entering an array from a text file named "filename"
+        /// <summary>
+        /// entering an array from a text file named "filename"
+        /// </summary>
+        /// <param name="fileName">file name</param>
+        /// <returns></returns>
         public static IntArray ArrayFromTextFile(string fileName)
         {
-            try
+            StreamReader file = new StreamReader(fileName);
+            string row;
+            string[] buff;
+            int tempLength = 0;
+            int length = 0;
+            int j;
+
+            while ((row = file.ReadLine()) != null)
+                length += Regex.Replace(row.Trim(' '), "\\s+", " ").Split(' ').Length;
+
+            file.BaseStream.Position = 0;
+            IntArray result = new IntArray(length);
+
+            while ((row = file.ReadLine()) != null)
             {
-                StreamReader file = new StreamReader(fileName);
-                string row;
-                string[] buff;
-                int tempLength = 0;
-                int length = 0;
-                int j;
+                row = Regex.Replace(row.Trim(' '), "\\s+", " ");
+                buff = row.Split(' ');
+                tempLength += buff.Length;
+                j = 0;
 
-                while ((row = file.ReadLine()) != null)
-                    length += Regex.Replace(row.Trim(' '), "\\s+", " ").Split(' ').Length;
-
-                file.BaseStream.Position = 0;
-                IntArray result = new IntArray(length);
-
-                while ((row = file.ReadLine()) != null)
+                for (int i = tempLength - buff.Length; i < tempLength; i++)
                 {
-                    row = Regex.Replace(row.Trim(' '), "\\s+", " ");
-                    buff = row.Split(' ');
-                    tempLength += buff.Length;
-                    j = 0;
-
-                    for (int i = tempLength - buff.Length; i < tempLength; i++)
-                    {
-                        result[i] = Convert.ToInt32(buff[j]);
-                        j++;
-                    }
+                    result[i] = Convert.ToInt32(buff[j]);
+                    j++;
                 }
+            }
 
-                file.Close();
-                _notify?.Invoke("The ArrayFromTextFile method has worked");
-                return result;
-            }
-            catch (FileNotFoundException e)
-            {
-                throw new Exception(e.Message);
-                throw new Exception("ERROR. CHECK THE FILENAME");
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            file.Close();
+            _notify?.Invoke("The ArrayFromTextFile method has worked");
+            return result;
         }
-        // output of the arr array to a text file named "filename"
+        /// <summary>
+        /// output of the arr array to a text file named "filename"
+        /// </summary>
+        /// <param name="arr">array to write</param>
+        /// <param name="fileName">file name</param>
         public static void ArrayToTextFile(IntArray arr, string fileName)
         {
-            try
-            {
-                StreamWriter file = new StreamWriter(fileName);
+            StreamWriter file = new StreamWriter(fileName);
 
-                for (int i = 0; i < arr.length; i++)
-                    file.Write(arr[i] + " ");
+            for (int i = 0; i < arr.length; i++)
+                file.Write(arr[i] + " ");
 
-                file.Close();
-                _notify?.Invoke("The ArrayToTextFile method has worked");
-            }
-            catch (FileNotFoundException e)
-            {
-                throw new Exception(e.Message);
-                throw new Exception("ERROR. CHECK THE FILENAME");
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            file.Close();
+            _notify?.Invoke("The ArrayToTextFile method has worked");
         }
-        // calculating the sum of arr array elements
+        /// <summary>
+        /// calculating the sum of arr array elements
+        /// </summary>
+        /// <param name="arr">array to calculate</param>
+        /// <returns></returns>
         public static int SumArray(IntArray arr)
         {
             int result = 0;
@@ -153,6 +149,57 @@ namespace ClassLibraryForArray
                 result += arr[i];
 
             _notify?.Invoke($"The SumArray method has worked. The sum of the elements of the array is {result}");
+            return result;
+        }
+        /// <summary>
+        /// search for the number of elements in an array that are multiples of a given number
+        /// </summary>
+        /// <param name="arr">array</param>
+        /// <param name="x">a number to search for multiples of it</param>
+        /// <returns></returns>
+        public static int CountMultiples(IntArray arr, int x)
+        {
+            int count = 0;
+            for (int i = 0; i < arr.length; i++)
+            {
+                if (arr[i] % x == 0)
+                {
+                    count++;
+                }
+            }
+            _notify?.Invoke($"The CountMultiples method has worked, the number of multiples of elements: {count}");
+            return count;
+        }
+        /// <summary>
+        /// a method for searching an array for the index
+        /// of the element whose value is closest to the arithmetic mean 
+        /// of the array elements. 
+        /// if there are several such elements, 
+        /// the method will return the indexes 
+        /// of all those close to the arithmetic mean.
+        /// </summary>
+        /// <param name="arr">array</param>
+        /// <returns></returns>
+        public static IntArray FindСlosestToAvg(IntArray arr)
+        {
+            double avg = (double)SumArray(arr) / arr.length;
+            double minDifference = Math.Abs(arr[0] - avg);
+            List<int> index = new List<int>();
+
+            for (int i = 0; i < arr.length; i++)
+                if (Math.Abs(arr[i] - avg) < minDifference)
+                    minDifference = Math.Abs(arr[i] - avg);
+
+            for (int i = 0; i < arr.length; i++)
+                if (Math.Abs(arr[i] - avg) == minDifference)
+                    index.Add(i);
+
+            IntArray result = new IntArray(index.Count);
+
+            for (int i = 0; i < result.length; i++)
+                result[i] = index[i];
+
+            _notify?.Invoke($"The FindСlosestToAvg method has worked");
             return result;
         }
         // ++: increment: increment by 1 of all array elements
@@ -239,14 +286,6 @@ namespace ClassLibraryForArray
             else
             {
                 throw new Exception("ERROR. THE SIZES OF THE ARRAYS DO NOT MATCH: " + x.length + " != " + y.length);
-            }
-        }
-
-        public static void print(IntArray x)
-        {
-            for (int i = 0; i < x.length; i++)
-            {
-                Console.WriteLine(x[i]);
             }
         }
     }

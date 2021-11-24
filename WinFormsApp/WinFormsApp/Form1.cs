@@ -71,37 +71,28 @@ namespace WinFormsApp
         private void toolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem obj = sender as ToolStripMenuItem;
-            //var menuActions = new Dictionary<string, Values>
-            //{
-            //    //{ "inputArrHand", new Values(inputArrHand, new Arguments(obj.Name == "toolStripMenuItem4"? dataGridView1 : dataGridView2))},
-            //    //{ "toolStripMenuItem5", new Values(inputArrHand, new Arguments(dataGridView2))},
-            //    { "toolStripMenuItem6", new Values(inputArrRandom, new Arguments(dataGridView1, textBox1))},
-            //    { "toolStripMenuItem7", new Values(inputArrRandom, new Arguments(dataGridView2, textBox2))},
-            //    { "toolStripMenuItem8", new Values(inputArrFromFile, new Arguments(dataGridView1))},
-            //    { "toolStripMenuItem9", new Values(inputArrFromFile, new Arguments(dataGridView2))},
-            //    { "toolStripMenuItem10", new Values(sumElementsArray, new Arguments(dataGridView1))},
-            //    { "toolStripMenuItem11", new Values(sumElementsArray, new Arguments(dataGridView2))},
-            //    { "toolStripMenuItem12", new Values(countMultiples, new Arguments(dataGridView1))},
-            //    { "toolStripMenuItem13", new Values(countMultiples, new Arguments(dataGridView2))},
-            //    //////////////////////////////////////////////////////////////////////////////////
-            //    { "StripMenuItemSubtraction1", new Values(operationsArrays, new Arguments(dataGridView2, dataGridView1, "minus"))},
-            //    { "StripMenuItemSubtraction2", new Values(operationsArrays, new Arguments(dataGridView1, dataGridView2, "minus"))},
-            //    { "ToolStripMenuItemSum", new Values(operationsArrays, new Arguments(dataGridView1, dataGridView2, "plus"))},
-            //    { "toolStripMenuItem16", new Values(decrementAndIncrement, new Arguments(dataGridView1, "plus"))},
-            //    { "toolStripMenuItem17", new Values(decrementAndIncrement, new Arguments(dataGridView2, "plus"))},
-            //    { "toolStripMenuItem18", new Values(decrementAndIncrement, new Arguments(dataGridView1, "minus"))},
-            //    { "toolStripMenuItem19", new Values(decrementAndIncrement, new Arguments(dataGridView2, "minus"))},
-            //    { "toolStripMenuItem20", new Values(moduleArray, new Arguments(dataGridView1))},
-            //    { "toolStripMenuItem21", new Values(moduleArray, new Arguments(dataGridView2))},
-            //    { "toolStripMenuItem22", new Values(searchY, new Arguments(dataGridView1))},
-            //    { "toolStripMenuItem23", new Values(searchY, new Arguments(dataGridView2))},
-            //};
-            //menuActions[obj.Name].callMethod();
 
             var method = obj.Name switch
             {
-                "toolStripMenuItem4" => new Context(inputArrHand, dataGridView1),
-                "toolStripMenuItem5" => new Context(inputArrHand, dataGridView2)
+                "toolStripMenuItem4" => new Context(InputArrHand, new Arguments(dataGridView1)),
+                "toolStripMenuItem5" => new Context(InputArrHand, new Arguments(dataGridView2)),
+                "toolStripMenuItem6" => new Context(InputArrRandom, new Arguments(dataGridView1, textBox1)),
+                "toolStripMenuItem7" => new Context(InputArrRandom, new Arguments(dataGridView2, textBox2)),
+                "toolStripMenuItem8" => new Context(InputArrFromFile, new Arguments(dataGridView1)),
+                "toolStripMenuItem9" => new Context(InputArrFromFile, new Arguments(dataGridView2)),
+                "toolStripMenuItem10" => new Context(SumElementsArray, new Arguments(dataGridView1)),
+                "toolStripMenuItem11" => new Context(SumElementsArray, new Arguments(dataGridView2)),
+                "toolStripMenuItem12" => new Context(CountMultiples, new Arguments(dataGridView1)),
+                "toolStripMenuItem13" => new Context(CountMultiples, new Arguments(dataGridView2)),
+                "toolStripMenuItem20" => new Context(OperationsArrays, new Arguments(dataGridView1, dataGridView2, "minus")),
+                "toolStripMenuItem21" => new Context(OperationsArrays, new Arguments(dataGridView2, dataGridView1, "minus")),
+                "toolStripMenuItem24" => new Context(OperationsArrays, new Arguments(dataGridView1, dataGridView2, "plus")),
+                "toolStripMenuItem15" => new Context(DecrementAndIncrement, new Arguments(dataGridView1, "plus")),
+                "toolStripMenuItem16" => new Context(DecrementAndIncrement, new Arguments(dataGridView2, "plus")),
+                "toolStripMenuItem18" => new Context(DecrementAndIncrement, new Arguments(dataGridView1, "minus")),
+                "toolStripMenuItem19" => new Context(DecrementAndIncrement, new Arguments(dataGridView2, "minus")),
+                "toolStripMenuItem23" => new Context(FindСlosestToAvg, new Arguments(dataGridView1)),
+                "toolStripMenuItem25" => new Context(FindСlosestToAvg, new Arguments(dataGridView2))
             };
 
             method.CallMethod();
@@ -127,55 +118,12 @@ namespace WinFormsApp
         }
 
 
-
-        //private void inputArrHand(Arguments obj)
-        //{
-        //    int i = obj.dataGridView.Name.Length - 1;
-
-        //    try
-        //    {
-        //        if (obj.dataGridView.ColumnCount == 0)
-        //            obj.dataGridView.ColumnCount = Convert.ToInt32(textBox1.Text);
-
-        //        obj.dataGridView.ReadOnly = false;
-        //        obj.dataGridView.RowCount = 1;
-        //        for (int j = 0; j < obj.dataGridView.ColumnCount; ++j)
-        //        {
-        //            obj.dataGridView.Columns[j].Name = (j + 1).ToString();
-        //        }
-        //    }
-        //    catch (FormatException)
-        //    {
-
-        //        MessageBox.Show($"Enter length of {obj.dataGridView.Name[i]} array", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-
-        //}
-        private void inputArrHand(DataGridView obj)
+        private void InputArrHand(Arguments args)
         {
-            int i = obj.Name.Length - 1;
-
-            try
-            {
-                if (obj.ColumnCount == 0)
-                    obj.ColumnCount = Convert.ToInt32(textBox1.Text);
-
-                obj.ReadOnly = false;
-                obj.RowCount = 1;
-                // нахуя если при батн клике колво столбцов итак изменится
-                for (int j = 0; j < obj.ColumnCount; ++j)
-                {
-                    obj.Columns[j].Name = (j + 1).ToString();
-                }
-            }
-            catch (FormatException)
-            {
-
-                MessageBox.Show($"Enter length of {obj.Name[i]} array", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+            args.dataGridView.ReadOnly = false;
         }
-        private void inputArrRandom(Arguments obj)
+
+        private void InputArrRandom(Arguments obj)
         {
             int i = obj.dataGridView.Name.Length - 1;
             try
@@ -193,7 +141,6 @@ namespace WinFormsApp
 
 
                 obj.dataGridView.RowCount = 1;
-                // почему +1, программа крашится если диапазон начинать с меньшего числа
                 IntArray n = IntArray.RandomIntArray(obj.dataGridView.ColumnCount, a, b + 1);
                 for (int j = 0; j < obj.dataGridView.ColumnCount; ++j)
                 {
@@ -210,7 +157,7 @@ namespace WinFormsApp
                 textBox5.Text = "";
             }
         }
-        private void inputArrFromFile(Arguments obj)
+        private void InputArrFromFile(Arguments obj)
         {
             try
             {
@@ -230,7 +177,6 @@ namespace WinFormsApp
             }
             catch (FormatException)
             {
-
                 MessageBox.Show($"File is incorrect format", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (FileNotFoundException)
@@ -242,7 +188,7 @@ namespace WinFormsApp
                 MessageBox.Show($"{exc.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void sumElementsArray(Arguments obj)
+        private void SumElementsArray(Arguments obj)
         {
             int i = obj.dataGridView.Name.Length - 1;
             int sum = 0;
@@ -266,7 +212,7 @@ namespace WinFormsApp
             }
 
         }
-        private void countMultiples(Arguments obj)
+        private void CountMultiples(Arguments obj)
         {
             int i = obj.dataGridView.Name.Length - 1;
 
@@ -284,8 +230,8 @@ namespace WinFormsApp
                         throw new Exception("not all cells of { obj.Name[i] } array were filled");
                     n[j] = Convert.ToInt32(obj.dataGridView.Rows[0].Cells[j].Value);
                 }
-                //count = IntArray.CountMultiples(n, x);
-                //MessageBox.Show($"Количество элементов массива { obj.dataGridView.Name[i]} кратных числу {x}:\n\n\t\t {count}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                count = IntArray.CountMultiples(n, x);
+                MessageBox.Show($"Количество элементов массива { obj.dataGridView.Name[i]} кратных числу {x}:\n\n\t\t {count}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (FormatException)
@@ -298,7 +244,7 @@ namespace WinFormsApp
                 MessageBox.Show($"{exc.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void operationsArrays(Arguments obj)
+        private void OperationsArrays(Arguments obj)
         {
 
             try
@@ -335,7 +281,6 @@ namespace WinFormsApp
                 else
                     result = a - b;
 
-                ////////// схуяли 3
                 dataGridView3.RowCount = 1;
                 dataGridView3.ColumnCount = obj.dataGridView.ColumnCount;
                 for (int j = 0; j < obj.dataGridViewOpt.ColumnCount; j++)
@@ -353,7 +298,7 @@ namespace WinFormsApp
             }
 
         }
-        private void decrementAndIncrement(Arguments obj)
+        private void DecrementAndIncrement(Arguments obj)
         {
             int i = obj.dataGridView.Name.Length - 1;
             try
@@ -386,7 +331,8 @@ namespace WinFormsApp
             }
 
         }
-        private void moduleArray(Arguments obj)
+
+        private void FindСlosestToAvg(Arguments obj)
         {
             int i = obj.dataGridView.Name.Length - 1;
             try
@@ -395,17 +341,14 @@ namespace WinFormsApp
                     throw new Exception($"{obj.dataGridView.Name[i]} array length is null");
                 IntArray n = new IntArray(obj.dataGridView.ColumnCount);
                 for (int j = 0; j < obj.dataGridView.ColumnCount; j++)
-                {
                     n[j] = Convert.ToInt32(obj.dataGridView.Rows[0].Cells[j].Value);
-                }
 
-                //n = IntArray.ModuleArray(n);
+                IntArray result = IntArray.FindСlosestToAvg(n);
+                string message = "";
+                for (int j = 0; j < result.Length; j++)
+                    message += $" {result[j]};";
 
-                //for (int j = 0; j < obj.dataGridView.ColumnCount; j++)
-                //{
-                //    obj.dataGridView.Rows[0].Cells[j].Value = n[j];
-                //}
-
+                MessageBox.Show($"The elements closest to the arithmetic mean in the array {obj.dataGridView.Name[i]} have indexes:\n\n\t {message}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception exc)
             {
@@ -413,44 +356,6 @@ namespace WinFormsApp
                 MessageBox.Show($"{exc.Message} ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-        }
-        private void searchY(Arguments obj)
-        {
-            int i = obj.dataGridView.Name.Length - 1;
-            try
-            {
-                if (obj.dataGridView.ColumnCount == 0)
-                    throw new Exception($"{obj.dataGridView.Name[i]} array length is null");
-                IntArray n = new IntArray(obj.dataGridView.ColumnCount);
-                for (int j = 0; j < obj.dataGridView.ColumnCount; j++)
-                {
-                    n[j] = Convert.ToInt32(obj.dataGridView.Rows[0].Cells[j].Value);
-                }
-
-                //int y = IntArray.SearchY(n);
-                //MessageBox.Show($"Значение y для 15 варианта в массиве {obj.dataGridView.Name[i]}:\n\n\t {y}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
-            catch (Exception exc)
-            {
-
-                MessageBox.Show($"{exc.Message} ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-    }
-    class Values
-    {
-        Action<Arguments> menuAction;
-        public Arguments args { get; set; }
-        public Values(Action<Arguments> menuAction, Arguments args)
-        {
-            this.menuAction = menuAction;
-            this.args = args;
-        }
-        public void callMethod()
-        {
-            menuAction(args);
         }
     }
     class Arguments
@@ -461,37 +366,38 @@ namespace WinFormsApp
         public string operation { get; set; }
         public Arguments(DataGridView obj)
         {
-            this.dataGridView = obj;
+            dataGridView = obj;
         }
         public Arguments(DataGridView obj, TextBox textBox)
         {
-            this.dataGridView = obj;
+            dataGridView = obj;
             this.textBox = textBox;
         }
-        public Arguments(DataGridView obj, DataGridView objSec, string operation)
+        public Arguments(DataGridView obj, DataGridView objOpt, string operation)
         {
-            this.dataGridView = obj;
-            this.dataGridViewOpt = objSec;
+            dataGridView = obj;
+            dataGridViewOpt = objOpt;
             this.operation = operation;
         }
         public Arguments(DataGridView obj, string operation)
         {
-            this.dataGridView = obj;
+            dataGridView = obj;
             this.operation = operation;
         }
     }
     class Context
     {
-        Action<DataGridView> menuAction;
-        public DataGridView obj { get; set; }
-        public Context(Action<DataGridView> menuAction, DataGridView obj)
+        Action<Arguments> menuAction;
+        private Arguments args { get; set; }
+        private TextBox textBox { get; set; }
+        public Context(Action<Arguments> menuAction, Arguments args)
         {
             this.menuAction = menuAction;
-            this.obj = obj;
+            this.args = args;
         }
         public void CallMethod()
         {
-            menuAction(obj);
+            menuAction(args);
         }
     }
 }
