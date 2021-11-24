@@ -13,7 +13,7 @@ namespace ClassLibraryForArray
         public delegate void IntArrayHandler(string message);
         private static event IntArrayHandler _notify;
         // the Notify event, which allows you to inform the application about which method has worked.
-        public event IntArrayHandler Notify
+        public static event IntArrayHandler Notify
         {
             // accessory for adding handlers
             add { _notify += value; }
@@ -78,9 +78,9 @@ namespace ClassLibraryForArray
             Random rand = new Random();
 
             for (int i = 0; i < length; i++)
-                result[i] = rand.Next(a, b);
+                result[i] = rand.Next(a, b+1);
 
-            _notify?.Invoke($"The RandomIntArray method has worked. Created an array of long {length} in the range [{a}; {b}]");
+            _notify?.Invoke($"The RandomIntArray method has worked. Created an array of length {length} in the range [{a}; {b}]");
             return result;
         }
         /// <summary>
@@ -180,26 +180,35 @@ namespace ClassLibraryForArray
         /// </summary>
         /// <param name="arr">array</param>
         /// <returns></returns>
-        public static IntArray FindСlosestToAvg(IntArray arr)
+        public static IntArray FindСlosestToAvg(double[] arr)
         {
-            double avg = (double)SumArray(arr) / arr.length;
+            string message = "";
+            double sumArray = 0;
+
+            for (int i = 0; i < arr.Length; i++)
+                sumArray += arr[i];
+
+            double avg = sumArray / arr.Length;
             double minDifference = Math.Abs(arr[0] - avg);
             List<int> index = new List<int>();
 
-            for (int i = 0; i < arr.length; i++)
+            for (int i = 0; i < arr.Length; i++)
                 if (Math.Abs(arr[i] - avg) < minDifference)
                     minDifference = Math.Abs(arr[i] - avg);
 
-            for (int i = 0; i < arr.length; i++)
+            for (int i = 0; i < arr.Length; i++)
                 if (Math.Abs(arr[i] - avg) == minDifference)
                     index.Add(i);
 
             IntArray result = new IntArray(index.Count);
 
             for (int i = 0; i < result.length; i++)
+            {
                 result[i] = index[i];
+                message += $" {result[i]};";
+            }
 
-            _notify?.Invoke($"The FindСlosestToAvg method has worked");
+            _notify?.Invoke($"The FindСlosestToAvg method has worked. The elements closest to the arithmetic mean have indexes:{message}");
             return result;
         }
         // ++: increment: increment by 1 of all array elements
@@ -208,6 +217,7 @@ namespace ClassLibraryForArray
             for (int i = 0; i < arr.length; i++)
                 arr[i]++;
 
+            _notify?.Invoke($"Increment by 1 of all array elements");
             return arr;
         }
         // +: addition of an array x with a scalar y
@@ -216,6 +226,7 @@ namespace ClassLibraryForArray
             for (int i = 0; i < x.length; i++)
                 x[i] += y;
 
+            _notify?.Invoke($"Addition of an array x with a scalar y");
             return x;
         }
         // +: addition of a scalar x with an array y
@@ -226,6 +237,7 @@ namespace ClassLibraryForArray
             for (int i = 0; i < y.length; i++)
                 result[i] = x + y[i];
 
+            _notify?.Invoke($"Addition of a scalar x with an array y");
             return result;
         }
         // +: addition of two arrays x and y
@@ -238,6 +250,7 @@ namespace ClassLibraryForArray
                 for (int i = 0; i < x.length; i++)
                     result[i] = x[i] + y[i];
 
+                _notify?.Invoke($"Addition of two arrays x and y");
                 return result;
             }
             else
@@ -251,6 +264,7 @@ namespace ClassLibraryForArray
             for (int i = 0; i < arr.length; i++)
                 arr[i]--;
 
+            _notify?.Invoke($"Decrease by 1 of all array elements");
             return arr;
         }
         // -: subtraction from the array x of the scalar y (x - y)
@@ -259,6 +273,7 @@ namespace ClassLibraryForArray
             for (int i = 0; i < x.length; i++)
                 x[i] -= y;
 
+            _notify?.Invoke($"Subtraction from the array x of the scalar y (x - y)");
             return x;
         }
         // -: subtraction from the scalar x of the array y (x - y)
@@ -269,9 +284,10 @@ namespace ClassLibraryForArray
             for (int i = 0; i < y.length; i++)
                 result[i] = x - y[i];
 
+            _notify?.Invoke($"Subtraction from the scalar x of the array y (x - y)");
             return result;
         }
-        // -: subtraction from array x of array y(x - y)
+        // -: subtraction from array x of array y (x - y)
         public static IntArray operator -(IntArray x, IntArray y)
         {
             if (x.length == y.length)
@@ -281,6 +297,7 @@ namespace ClassLibraryForArray
                 for (int i = 0; i < x.length; i++)
                     result[i] = x[i] - y[i];
 
+                _notify?.Invoke($"Subtraction from array x of array y (x - y)");
                 return result;
             }
             else
