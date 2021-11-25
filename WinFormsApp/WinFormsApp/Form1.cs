@@ -296,7 +296,7 @@ namespace WinFormsApp
         {
             double[] n = new double[args.dataGridView.ColumnCount];
             for (int i = 0; i < args.dataGridView.ColumnCount; i++)
-                n[i] = Convert.ToDouble(args.dataGridView.Rows[0].Cells[i].Value);
+                n[i] = Convert.ToDouble(Convert.ToInt32(args.dataGridView.Rows[0].Cells[i].Value));
 
             IntArray.FindСlosestToAvg(n);
         }

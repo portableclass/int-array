@@ -227,15 +227,13 @@ namespace ClassLibraryForArray
             return x;
         }
         // +: addition of a scalar x with an array y
-        public static IntArray operator +(int x, IntArray y)
+        public static int operator +(int x, IntArray y)
         {
-            IntArray result = new IntArray(y.length);
-
             for (int i = 0; i < y.length; i++)
-                result[i] = x + y[i];
+                x += y[i];
 
             _notify?.Invoke($"Addition of a scalar x with an array y");
-            return result;
+            return x;
         }
         // +: addition of two arrays x and y
         public static IntArray operator +(IntArray x, IntArray y)
@@ -274,15 +272,13 @@ namespace ClassLibraryForArray
             return x;
         }
         // -: subtraction from the scalar x of the array y (x - y)
-        public static IntArray operator -(int x, IntArray y)
+        public static int operator -(int x, IntArray y)
         {
-            IntArray result = new IntArray(y.length);
-
             for (int i = 0; i < y.length; i++)
-                result[i] = x - y[i];
+                x -= y[i];
 
             _notify?.Invoke($"Subtraction from the scalar x of the array y (x - y)");
-            return result;
+            return x;
         }
         // -: subtraction from array x of array y (x - y)
         public static IntArray operator -(IntArray x, IntArray y)

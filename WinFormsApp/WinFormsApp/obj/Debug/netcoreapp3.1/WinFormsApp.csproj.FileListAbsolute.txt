@@ -16,3 +16,4 @@ C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\netcoreapp3.1\W
 C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\netcoreapp3.1\WinFormsApp.pdb
 C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\netcoreapp3.1\WinFormsApp.genruntimeconfig.cache
 C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\netcoreapp3.1\WinFormsApp.csproj.CopyComplete
+C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\netcoreapp3.1\WinFormsApp.csproj.AssemblyReference.cache
