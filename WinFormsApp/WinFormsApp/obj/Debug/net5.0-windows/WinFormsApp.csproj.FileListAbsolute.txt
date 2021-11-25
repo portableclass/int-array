@@ -18,4 +18,3 @@ C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\net5.0-windows\
 C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\net5.0-windows\WinFormsApp.pdb
 C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\net5.0-windows\WinFormsApp.genruntimeconfig.cache
 C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\net5.0-windows\WinFormsApp.csproj.AssemblyReference.cache
-C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\net5.0-windows\WinFormsApp.csproj.CopyComplete

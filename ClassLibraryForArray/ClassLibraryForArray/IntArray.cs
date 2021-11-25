@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -23,10 +20,10 @@ namespace ClassLibraryForArray
 
         // private one-dimensional array
         private int[] a;
-        // private length
+        // private  array length
         private int length;
 
-        // public property: array length
+        // public array length
         public int Length
         {
             get { return length; }

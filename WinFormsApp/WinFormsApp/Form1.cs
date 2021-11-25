@@ -1,5 +1,4 @@
 ﻿using ClassLibraryForArray;
-using Microsoft.VisualBasic;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -39,8 +38,10 @@ namespace WinFormsApp
         {
             try
             {
-                if (textBox1.Text == "0" || textBox2.Text == "0")
-                    throw new Exception($"Incorrect array length.");
+                if (textBox1.Text == "0")
+                    throw new Exception($"Invalid length of the first array.");
+                if (textBox2.Text == "0")
+                    throw new Exception($"Invalid length of the second array.");
 
                 int coulmnCount1, coulmnCount2;
                 int prev1, prev2;
@@ -132,22 +133,22 @@ namespace WinFormsApp
             }
         }
 
-        private void InputArrManually(Arguments obj)
+        private void InputArrManually(Arguments args)
         {
-            obj.dataGridView.ReadOnly = false;
+            args.dataGridView.ReadOnly = false;
         }
 
-        private void InputArrRandom(Arguments obj)
+        private void InputArrRandom(Arguments args)
         {
             try
             {
                 int a = Convert.ToInt32(textBox4.Text);
                 int b = Convert.ToInt32(textBox5.Text);
 
-                IntArray arr = IntArray.RandomIntArray(obj.dataGridView.ColumnCount, a, b);
+                IntArray arr = IntArray.RandomIntArray(args.dataGridView.ColumnCount, a, b);
 
-                for (int i = 0; i < obj.dataGridView.ColumnCount; i++)
-                    obj.dataGridView.Rows[0].Cells[i].Value = arr[i].ToString();
+                for (int i = 0; i < args.dataGridView.ColumnCount; i++)
+                    args.dataGridView.Rows[0].Cells[i].Value = arr[i].ToString();
             }
             catch (FormatException)
             {
@@ -157,20 +158,20 @@ namespace WinFormsApp
             }
         }
 
-        private void InputArrFromFile(Arguments obj)
+        private void InputArrFromFile(Arguments args)
         {
             try
             {
-                string fileAddress = Interaction.InputBox("Enter the directory of the file\nfrom which you want to extract the array.\nExample: C:\\Windows\\input.txt");
+                string fileAddress = textBox6.Text;
                 IntArray arr = IntArray.ArrayFromTextFile(fileAddress);
                 if (arr.Length == 0)
                     throw new Exception("File is empty.");
 
-                obj.dataGridView.ColumnCount = arr.Length;
-                for (int i = 0; i < obj.dataGridView.ColumnCount; i++)
+                args.dataGridView.ColumnCount = arr.Length;
+                for (int i = 0; i < args.dataGridView.ColumnCount; i++)
                 {
-                    obj.dataGridView.Columns[i].Name = (i + 1).ToString();
-                    obj.dataGridView.Rows[0].Cells[i].Value = arr[i].ToString();
+                    args.dataGridView.Columns[i].Name = (i + 1).ToString();
+                    args.dataGridView.Rows[0].Cells[i].Value = arr[i].ToString();
                 }
             }
             catch (FormatException)
@@ -197,24 +198,24 @@ namespace WinFormsApp
             IntArray.SumArray(n);
         }
 
-        private void CountMultiples(Arguments obj)
+        private void CountMultiples(Arguments args)
         {
-            int i = obj.dataGridView.Name.Length - 1;
+            int i = args.dataGridView.Name.Length - 1;
             try
             {
                 int x = Convert.ToInt32(textBox3.Text);
                 if (x == 0)
                     throw new FormatException();
 
-                IntArray arr = new IntArray(obj.dataGridView.ColumnCount);
+                IntArray arr = new IntArray(args.dataGridView.ColumnCount);
 
-                for (int j = 0; j < obj.dataGridView.ColumnCount; j++)
+                for (int j = 0; j < args.dataGridView.ColumnCount; j++)
                 {
-                    if (obj.dataGridView.Rows[0].Cells[j].Value == null)
-                        throw new Exception($"In array { obj.dataGridView.Name[i] } cell number {obj.dataGridView.Rows[0].Cells[j]} is not filled");
-                    arr[j] = Convert.ToInt32(obj.dataGridView.Rows[0].Cells[j].Value);
+                    if (args.dataGridView.Rows[0].Cells[j].Value == null)
+                        throw new Exception($"In array { args.dataGridView.Name[i] } cell number {args.dataGridView.Rows[0].Cells[j]} is not filled");
+                    arr[j] = Convert.ToInt32(args.dataGridView.Rows[0].Cells[j].Value);
                 }
-                
+
                 IntArray.CountMultiples(arr, x);
             }
             catch (FormatException)
@@ -226,70 +227,76 @@ namespace WinFormsApp
                 MessageBox.Show($"{exc.Message}", "INPUT_ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void OperationsWithArrays(Arguments obj)
+        private void OperationsWithArrays(Arguments args)
         {
             int[] columnCount = new int[2];
-            columnCount[0] = obj.dataGridView.ColumnCount;
-            columnCount[1] = obj.dataGridViewOpt.ColumnCount;
+            columnCount[0] = args.dataGridView.ColumnCount;
+            columnCount[1] = args.dataGridViewOpt.ColumnCount;
+            int maxCount;
 
-            if (obj.dataGridView.ColumnCount < obj.dataGridViewOpt.ColumnCount)
-                obj.dataGridView.ColumnCount = obj.dataGridViewOpt.ColumnCount;
-            else
-                obj.dataGridViewOpt.ColumnCount = obj.dataGridView.ColumnCount;
-
-            IntArray a = new IntArray(obj.dataGridView.ColumnCount);
-            IntArray b = new IntArray(obj.dataGridViewOpt.ColumnCount);
-
-            for (int i = 0; i < obj.dataGridViewOpt.ColumnCount; i++)
+            if (args.dataGridView.ColumnCount < args.dataGridViewOpt.ColumnCount)
             {
-                a[i] = Convert.ToInt32(obj.dataGridView.Rows[0].Cells[i].Value);
-                b[i] = Convert.ToInt32(obj.dataGridViewOpt.Rows[0].Cells[i].Value);
+                args.dataGridView.ColumnCount = args.dataGridViewOpt.ColumnCount;
+                maxCount = args.dataGridViewOpt.ColumnCount;
+            }
+            else
+            {
+                args.dataGridViewOpt.ColumnCount = args.dataGridView.ColumnCount;
+                maxCount = args.dataGridView.ColumnCount;
+            }
+
+            IntArray a = new IntArray(maxCount);
+            IntArray b = new IntArray(maxCount);
+
+            for (int i = 0; i < maxCount; i++)
+            {
+                a[i] = Convert.ToInt32(args.dataGridView.Rows[0].Cells[i].Value);
+                b[i] = Convert.ToInt32(args.dataGridViewOpt.Rows[0].Cells[i].Value);
             }
 
             IntArray result;
-            if (obj.operation == "plus")
+            if (args.operation == "plus")
                 result = a + b;
             else
                 result = a - b;
 
             dataGridView3.RowCount = 1;
-            dataGridView3.ColumnCount = obj.dataGridView.ColumnCount;
-            for (int i = 0; i < obj.dataGridViewOpt.ColumnCount; i++)
+            dataGridView3.ColumnCount = maxCount;
+            for (int i = 0; i < maxCount; i++)
             {
                 dataGridView3.Columns[i].Name = (i + 1).ToString();
                 dataGridView3.Rows[0].Cells[i].Value = result[i];
             }
-            obj.dataGridView.ColumnCount = columnCount[0];
-            obj.dataGridViewOpt.ColumnCount = columnCount[1];
+            args.dataGridView.ColumnCount = columnCount[0];
+            args.dataGridViewOpt.ColumnCount = columnCount[1];
         }
-        private void DecrementAndIncrement(Arguments obj)
+        private void DecrementAndIncrement(Arguments args)
         {
-            IntArray arr = new IntArray(obj.dataGridView.ColumnCount);
+            IntArray arr = new IntArray(args.dataGridView.ColumnCount);
 
-            for (int i = 0; i < obj.dataGridView.ColumnCount; i++)
-                arr[i] = Convert.ToInt32(obj.dataGridView.Rows[0].Cells[i].Value);
+            for (int i = 0; i < args.dataGridView.ColumnCount; i++)
+                arr[i] = Convert.ToInt32(args.dataGridView.Rows[0].Cells[i].Value);
 
-            if (obj.operation == "plus")
+            if (args.operation == "plus")
                 arr++;
             else
                 arr--;
 
             dataGridView3.RowCount = 1;
-            dataGridView3.ColumnCount = obj.dataGridView.ColumnCount;
+            dataGridView3.ColumnCount = args.dataGridView.ColumnCount;
 
-            for (int i = 0; i < obj.dataGridView.ColumnCount; i++)
+            for (int i = 0; i < args.dataGridView.ColumnCount; i++)
             {
                 dataGridView3.Columns[i].Name = (i + 1).ToString();
                 dataGridView3.Rows[0].Cells[i].Value = arr[i];
             }
-
         }
 
-        private void FindСlosestToAvg(Arguments obj)
+        private void FindСlosestToAvg(Arguments args)
         {
-            double[] n = new double[obj.dataGridView.ColumnCount];
-            for (int i = 0; i < obj.dataGridView.ColumnCount; i++)
-                n[i] = Convert.ToDouble(obj.dataGridView.Rows[0].Cells[i].Value);
+            double[] n = new double[args.dataGridView.ColumnCount];
+            for (int i = 0; i < args.dataGridView.ColumnCount; i++)
+                n[i] = Convert.ToDouble(args.dataGridView.Rows[0].Cells[i].Value);
 
             IntArray.FindСlosestToAvg(n);
         }

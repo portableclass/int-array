@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -82,6 +83,9 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -148,7 +152,7 @@
             this.особоеДействиеToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1107, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1102, 28);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -485,11 +489,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(785, 129);
+            this.button1.Location = new System.Drawing.Point(549, 535);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 48);
             this.button1.TabIndex = 14;
-            this.button1.Text = "Подтверждение";
+            this.button1.Text = "Изменить длину массивов";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -516,9 +520,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(44, 385);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(73, 20);
+            this.label10.Size = new System.Drawing.Size(149, 20);
             this.label10.TabIndex = 19;
-            this.label10.Text = "Массив 3";
+            this.label10.Text = "Массив результатов";
             // 
             // statusStrip1
             // 
@@ -527,9 +531,9 @@
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel3});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 658);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 776);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1107, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1102, 26);
             this.statusStrip1.TabIndex = 21;
             this.statusStrip1.Text = "gfgf";
             // 
@@ -550,11 +554,40 @@
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(18, 20);
             this.toolStripStatusLabel3.Text = "...";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(44, 529);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(458, 220);
+            this.label8.TabIndex = 22;
+            this.label8.Text = resources.GetString("label8.Text");
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(785, 717);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(250, 27);
+            this.textBox6.TabIndex = 23;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(785, 654);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(279, 60);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Enter the directory of the file\r\nfrom which you want to extract the array.\r\nExamp" +
+    "le: C:\\Windows\\input.txt";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1107, 684);
+            this.ClientSize = new System.Drawing.Size(1102, 802);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label7);
@@ -646,6 +679,9 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label9;
     }
 }
 

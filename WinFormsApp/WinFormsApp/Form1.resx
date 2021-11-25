@@ -63,4 +63,20 @@
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>152, 17</value>
   </metadata>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Памятка пользователю:
+1) Чтобы изменить длину массивов 
+необходимо нажать кнопку "Изменить длину массивов"
+(по умолчанию массивы имеют размерность 15 элементов)
+3) Чтобы извлечь массив из файла
+необходимо указать директорию файла
+в соответствующем поле ввода
+2) Всем пустым ячейкам в массиве будет присвоено значение 0
+при выполнении действий над ними
+3) Результат работы методов отображается в строке
+состояния: "Status bar"</value>
+  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>38</value>
+  </metadata>
 </root>
