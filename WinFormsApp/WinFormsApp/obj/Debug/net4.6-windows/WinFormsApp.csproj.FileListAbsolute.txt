@@ -1,7 +1,0 @@
-C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\net4.6-windows\WinFormsApp.csproj.AssemblyReference.cache
-C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\net4.6-windows\WinFormsApp.Form1.resources
-C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\net4.6-windows\WinFormsApp.csproj.GenerateResource.cache
-C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\net4.6-windows\WinFormsApp.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\net4.6-windows\WinFormsApp.AssemblyInfoInputs.cache
-C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\net4.6-windows\WinFormsApp.AssemblyInfo.cs
-C:\Users\YASH\source\repos\rpm\WinFormsApp\WinFormsApp\obj\Debug\net4.6-windows\WinFormsApp.csproj.CoreCompileInputs.cache

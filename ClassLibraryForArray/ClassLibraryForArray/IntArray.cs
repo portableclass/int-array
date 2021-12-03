@@ -50,8 +50,8 @@ namespace ClassLibraryForArray
         // constructor for creating an array of a given length
         public IntArray(int length)
         {
-            a = new int[length];
-            this.length = length;
+            a = new int[Math.Abs(length)];
+            this.length = Math.Abs(length);
         }
         // constructor with a variable number of parameters
         public IntArray(params int[] arr)
@@ -87,36 +87,48 @@ namespace ClassLibraryForArray
         /// <returns></returns>
         public static IntArray ArrayFromTextFile(string fileName)
         {
-            StreamReader file = new StreamReader(fileName);
-            string row;
-            string[] buff;
-            int tempLength = 0;
-            int length = 0;
-            int j;
-
-            while ((row = file.ReadLine()) != null)
-                length += Regex.Replace(row.Trim(' '), "\\s+", " ").Split(' ').Length;
-
-            file.BaseStream.Position = 0;
-            IntArray result = new IntArray(length);
-
-            while ((row = file.ReadLine()) != null)
+            if (File.Exists(fileName))
             {
-                row = Regex.Replace(row.Trim(' '), "\\s+", " ");
-                buff = row.Split(' ');
-                tempLength += buff.Length;
-                j = 0;
+                StreamReader file = new StreamReader(fileName);
+                string row;
+                string[] buff;
+                int tempLength = 0;
+                int length = 0;
+                int j;
 
-                for (int i = tempLength - buff.Length; i < tempLength; i++)
+                while ((row = file.ReadLine()) != null)
+                    length += Regex.Replace(row.Trim(' '), "\\s+", " ").Split(' ').Length;
+
+                file.BaseStream.Position = 0;
+                IntArray result = new IntArray(length);
+
+                while ((row = file.ReadLine()) != null)
                 {
-                    result[i] = Convert.ToInt32(buff[j]);
-                    j++;
-                }
-            }
+                    row = Regex.Replace(row.Trim(' '), "\\s+", " ");
+                    buff = row.Split(' ');
+                    tempLength += buff.Length;
+                    j = 0;
 
-            file.Close();
-            _notify?.Invoke("The ArrayFromTextFile method has worked");
-            return result;
+                    for (int i = tempLength - buff.Length; i < tempLength; i++)
+                    {
+                        try
+                        {
+                            result[i] = Convert.ToInt32(buff[j]);
+                        }
+                        catch
+                        {
+                            throw new FormatException("FORMATTING ERROR");
+                        }
+                        j++;
+                    }
+                }
+
+                file.Close();
+                _notify?.Invoke("The ArrayFromTextFile method has worked");
+                return result;
+            }
+            else
+                throw new FileNotFoundException("ERROR. CHECK THE FILENAME OR DIRECTORY CORRECTNESS");
         }
         /// <summary>
         /// output of the arr array to a text file named "filename"
@@ -194,7 +206,7 @@ namespace ClassLibraryForArray
                     minDifference = Math.Abs(arr[i] - avg);
 
             for (int i = 0; i < arr.Length; i++)
-                if (Math.Abs(arr[i] - avg) == minDifference)
+                if (Math.Abs(Math.Abs(arr[i] - avg) - minDifference) < 1e-16)
                     index.Add(i);
 
             IntArray result = new IntArray(index.Count);
@@ -220,20 +232,22 @@ namespace ClassLibraryForArray
         // +: addition of an array x with a scalar y
         public static IntArray operator +(IntArray x, int y)
         {
+            IntArray result = new IntArray(x.length);
             for (int i = 0; i < x.length; i++)
-                x[i] += y;
+                result[i] = x[i] + y;
 
             _notify?.Invoke($"Addition of an array x with a scalar y");
-            return x;
+            return result;
         }
         // +: addition of a scalar x with an array y
-        public static int operator +(int x, IntArray y)
+        public static IntArray operator +(int x, IntArray y)
         {
+            IntArray result = new IntArray(y.length);
             for (int i = 0; i < y.length; i++)
-                x += y[i];
+                result[i] = x + y[i];
 
             _notify?.Invoke($"Addition of a scalar x with an array y");
-            return x;
+            return result;
         }
         // +: addition of two arrays x and y
         public static IntArray operator +(IntArray x, IntArray y)
@@ -265,20 +279,22 @@ namespace ClassLibraryForArray
         // -: subtraction from the array x of the scalar y (x - y)
         public static IntArray operator -(IntArray x, int y)
         {
+            IntArray result = new IntArray(x.length);
             for (int i = 0; i < x.length; i++)
-                x[i] -= y;
+                result[i] = x[i] - y;
 
             _notify?.Invoke($"Subtraction from the array x of the scalar y (x - y)");
-            return x;
+            return result;
         }
         // -: subtraction from the scalar x of the array y (x - y)
-        public static int operator -(int x, IntArray y)
+        public static IntArray operator -(int x, IntArray y)
         {
+            IntArray result = new IntArray(y.length);
             for (int i = 0; i < y.length; i++)
-                x -= y[i];
+                result[i] = x - y[i];
 
             _notify?.Invoke($"Subtraction from the scalar x of the array y (x - y)");
-            return x;
+            return result;
         }
         // -: subtraction from array x of array y (x - y)
         public static IntArray operator -(IntArray x, IntArray y)

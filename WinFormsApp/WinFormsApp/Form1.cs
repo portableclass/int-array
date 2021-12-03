@@ -1,5 +1,6 @@
 ﻿using ClassLibraryForArray;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -84,30 +85,29 @@ namespace WinFormsApp
         {
             ToolStripMenuItem obj = sender as ToolStripMenuItem;
 
-            var method = obj.Name switch
+            var method = new Dictionary<string, Context>
             {
-                "toolStripMenuItem4" => new Context(InputArrManually, new Arguments(dataGridView1)),
-                "toolStripMenuItem5" => new Context(InputArrManually, new Arguments(dataGridView2)),
-                "toolStripMenuItem6" => new Context(InputArrRandom, new Arguments(dataGridView1, textBox1)),
-                "toolStripMenuItem7" => new Context(InputArrRandom, new Arguments(dataGridView2, textBox2)),
-                "toolStripMenuItem8" => new Context(InputArrFromFile, new Arguments(dataGridView1)),
-                "toolStripMenuItem9" => new Context(InputArrFromFile, new Arguments(dataGridView2)),
-                "toolStripMenuItem10" => new Context(SumArray, new Arguments(dataGridView1)),
-                "toolStripMenuItem11" => new Context(SumArray, new Arguments(dataGridView2)),
-                "toolStripMenuItem12" => new Context(CountMultiples, new Arguments(dataGridView1)),
-                "toolStripMenuItem13" => new Context(CountMultiples, new Arguments(dataGridView2)),
-                "toolStripMenuItem20" => new Context(OperationsWithArrays, new Arguments(dataGridView1, dataGridView2, "minus")),
-                "toolStripMenuItem21" => new Context(OperationsWithArrays, new Arguments(dataGridView2, dataGridView1, "minus")),
-                "toolStripMenuItem24" => new Context(OperationsWithArrays, new Arguments(dataGridView1, dataGridView2, "plus")),
-                "toolStripMenuItem15" => new Context(DecrementAndIncrement, new Arguments(dataGridView1, "plus")),
-                "toolStripMenuItem16" => new Context(DecrementAndIncrement, new Arguments(dataGridView2, "plus")),
-                "toolStripMenuItem18" => new Context(DecrementAndIncrement, new Arguments(dataGridView1, "minus")),
-                "toolStripMenuItem19" => new Context(DecrementAndIncrement, new Arguments(dataGridView2, "minus")),
-                "toolStripMenuItem23" => new Context(FindСlosestToAvg, new Arguments(dataGridView1)),
-                "toolStripMenuItem25" => new Context(FindСlosestToAvg, new Arguments(dataGridView2))
+                { "toolStripMenuItem4", new Context(InputArrManually, new Arguments(dataGridView1)) },
+                { "toolStripMenuItem5", new Context(InputArrManually, new Arguments(dataGridView2)) },
+                { "toolStripMenuItem6", new Context(InputArrRandom, new Arguments(dataGridView1, textBox1)) },
+                { "toolStripMenuItem7", new Context(InputArrRandom, new Arguments(dataGridView2, textBox2)) },
+                { "toolStripMenuItem8", new Context(InputArrFromFile, new Arguments(dataGridView1)) },
+                { "toolStripMenuItem9", new Context(InputArrFromFile, new Arguments(dataGridView2)) },
+                { "toolStripMenuItem10", new Context(SumArray, new Arguments(dataGridView1)) },
+                { "toolStripMenuItem11", new Context(SumArray, new Arguments(dataGridView2)) },
+                { "toolStripMenuItem12", new Context(CountMultiples, new Arguments(dataGridView1)) },
+                { "toolStripMenuItem13", new Context(CountMultiples, new Arguments(dataGridView2)) },
+                { "toolStripMenuItem20", new Context(OperationsWithArrays, new Arguments(dataGridView1, dataGridView2, "minus")) },
+                { "toolStripMenuItem21", new Context(OperationsWithArrays, new Arguments(dataGridView2, dataGridView1, "minus")) },
+                { "toolStripMenuItem24", new Context(OperationsWithArrays, new Arguments(dataGridView1, dataGridView2, "plus")) },
+                { "toolStripMenuItem15", new Context(DecrementAndIncrement, new Arguments(dataGridView1, "plus")) },
+                { "toolStripMenuItem16", new Context(DecrementAndIncrement, new Arguments(dataGridView2, "plus")) },
+                { "toolStripMenuItem18", new Context(DecrementAndIncrement, new Arguments(dataGridView1, "minus")) },
+                { "toolStripMenuItem19", new Context(DecrementAndIncrement, new Arguments(dataGridView2, "minus")) },
+                { "toolStripMenuItem25", new Context(FindСlosestToAvg, new Arguments(dataGridView3)) },
             };
 
-            method.DoMethod();
+            method[obj.Name].DoMethod();
         }
 
 
@@ -272,9 +272,10 @@ namespace WinFormsApp
         }
         private void DecrementAndIncrement(Arguments args)
         {
-            IntArray arr = new IntArray(args.dataGridView.ColumnCount);
+            int size = args.dataGridView.ColumnCount;
+            IntArray arr = new IntArray(size);
 
-            for (int i = 0; i < args.dataGridView.ColumnCount; i++)
+            for (int i = 0; i < size; i++)
                 arr[i] = Convert.ToInt32(args.dataGridView.Rows[0].Cells[i].Value);
 
             if (args.operation == "plus")
@@ -283,9 +284,9 @@ namespace WinFormsApp
                 arr--;
 
             dataGridView3.RowCount = 1;
-            dataGridView3.ColumnCount = args.dataGridView.ColumnCount;
+            dataGridView3.ColumnCount = size;
 
-            for (int i = 0; i < args.dataGridView.ColumnCount; i++)
+            for (int i = 0; i < size; i++)
             {
                 dataGridView3.Columns[i].Name = (i + 1).ToString();
                 dataGridView3.Rows[0].Cells[i].Value = arr[i];
@@ -294,11 +295,43 @@ namespace WinFormsApp
 
         private void FindСlosestToAvg(Arguments args)
         {
-            double[] n = new double[args.dataGridView.ColumnCount];
-            for (int i = 0; i < args.dataGridView.ColumnCount; i++)
-                n[i] = Convert.ToDouble(Convert.ToInt32(args.dataGridView.Rows[0].Cells[i].Value));
+            try
+            {
+                int size;
+                if (textBox7.Text == "" || textBox7.Text == "0")
+                    throw new Exception("Enter the length to generate \nan array of random real numbers");
+                else
+                    size = Math.Abs(Convert.ToInt32(textBox7.Text));
+                int a = Convert.ToInt32(textBox4.Text);
+                int b = Convert.ToInt32(textBox5.Text);
+                args.dataGridView.RowCount = 1;
+                args.dataGridView.ColumnCount = size;
 
-            IntArray.FindСlosestToAvg(n);
+                double[] result = new double[args.dataGridView.ColumnCount];
+                Random rand = new Random();
+
+                for (int i = 0; i < result.Length; i++)
+                    result[i] = Math.Round(a + rand.NextDouble() * (b - a), 2);
+
+                for (int i = 0; i < args.dataGridView.ColumnCount; i++)
+                {
+                    args.dataGridView.Columns[i].Name = (i + 1).ToString();
+                    args.dataGridView.Rows[0].Cells[i].Value = result[i].ToString();
+                }
+
+                IntArray.FindСlosestToAvg(result);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show($"Incorrect intervals or size of the array.", "INPUT_ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox4.Text = "";
+                textBox5.Text = "";
+                textBox7.Text = "";
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show($"{exc.Message}", "INPUT_ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
     class Arguments
